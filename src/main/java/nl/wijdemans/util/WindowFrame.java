@@ -4,40 +4,40 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.awt.*;
+import java.awt.image.BufferStrategy;
+import java.awt.image.BufferedImage;
 import javax.swing.*;
 
 public class WindowFrame {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(WindowFrame.class);
 
-    private final WindowPanel windowPanel;
+    private final Canvas canvas;
     private final Renderer renderer;
 
-    public WindowFrame(WindowPanel windowPanel, Renderer renderer) {
-        this.windowPanel = windowPanel;
+    public WindowFrame(Frame frame, Canvas canvas, Renderer renderer) {
+        this.canvas = canvas;
         this.renderer = renderer;
 
-//        this.renderer.startRendering();
-
+        renderer.run(canvas, frame.getWidth(), frame.getHeight());
     }
 
-
-    private static class WindowPanel extends JPanel {
-
-        private final Renderer renderer;
-
-        public WindowPanel(Renderer renderer) {
-            this.renderer = renderer;
-        }
-
-        @Override
-        public void paint(Graphics graphics) {
-            super.paintComponent(graphics);
-            Graphics2D g2= (Graphics2D) graphics;
-
-            renderer.startRendering(g2);
-        }
-    }
+//    private static class WindowPanel extends JPanel {
+//
+//        private final Renderer renderer;
+//
+//        public WindowPanel(Renderer renderer) {
+//            this.renderer = renderer;
+//        }
+//
+//        @Override
+//        public void paint(Graphics graphics) {
+//            super.paintComponent(graphics);
+//            Graphics2D g2= (Graphics2D) graphics;
+//
+//            renderer.startRendering(g2);
+//        }
+//    }
 
     public static class Builder {
 
@@ -75,11 +75,6 @@ public class WindowFrame {
 
         }
 
-//        public Builder withContent(Container content) {
-//            this.content = content;
-//            return this;
-//        }
-
         public WindowFrame build() {
 
             try {
@@ -89,19 +84,34 @@ public class WindowFrame {
             }
 
             JFrame frame = new JFrame(title);
+            frame.setIgnoreRepaint(true);
+
             frame.setBackground(backgroundColor);
 
             frame.setPreferredSize(dimension);
             frame.setSize(dimension);
             frame.pack();
             frame.addWindowListener(new ExitListener());
-            frame.setVisible(true);
 
-            WindowPanel content = new WindowPanel(renderer);
-            frame.setContentPane(content);
+
+            Canvas canvas = new Canvas();
+            canvas.setIgnoreRepaint(true);
+            canvas.setSize(dimension);
+            canvas.setBackground(backgroundColor);
+            frame.add(canvas);
+
+
+            frame.setVisible(true);
+            frame.setResizable(false);
+
             frame.pack();
 
-            return new WindowFrame(content, renderer);
+
+            canvas.createBufferStrategy(2);
+
+            canvas.requestFocus();
+
+            return new WindowFrame(frame, canvas, renderer);
         }
 
     }

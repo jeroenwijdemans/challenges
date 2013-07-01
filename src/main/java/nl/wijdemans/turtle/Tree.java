@@ -19,7 +19,7 @@ public class Tree {
         WindowFrame.Builder.withDimension(1200, 900)
                 .withTitle("Growing Tree")
                 .withBackgroundColor(Color.WHITE)
-                .withRenderer(new TreeRenderer())
+                .withRenderer(new TreeTimeRenderer())
                 .build();
 
     }
@@ -27,10 +27,6 @@ public class Tree {
     private class TreeTimeRenderer extends ContinuousRenderer {
 
         private int timeTick = 0;
-
-        public TreeTimeRenderer() {
-            super.sleep = 1000;
-        }
 
         @Override
         public void render(Graphics2D g2) {
@@ -50,6 +46,10 @@ public class Tree {
             }
         }
 
+        @Override
+        protected int sleepUntilNext() {
+            return 1000;
+        }
     }
 
     private class TreeRenderer extends SingleRender {

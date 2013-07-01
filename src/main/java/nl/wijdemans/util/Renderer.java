@@ -4,6 +4,8 @@ import java.awt.*;
 
 public interface Renderer {
 
-    void startRendering(Graphics2D gg);
+    void render(Graphics2D gg);
+
+    void run(Canvas canvas, int width, int height );
 
 }
