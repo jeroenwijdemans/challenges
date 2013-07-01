@@ -3,8 +3,8 @@ package nl.wijdemans.util;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.swing.*;
 import java.awt.*;
+import javax.swing.*;
 
 public class WindowFrame {
 
@@ -16,6 +16,9 @@ public class WindowFrame {
     public WindowFrame(WindowPanel windowPanel, Renderer renderer) {
         this.windowPanel = windowPanel;
         this.renderer = renderer;
+
+//        this.renderer.startRendering();
+
     }
 
 
@@ -71,6 +74,11 @@ public class WindowFrame {
             return this;
 
         }
+
+//        public Builder withContent(Container content) {
+//            this.content = content;
+//            return this;
+//        }
 
         public WindowFrame build() {
 
