@@ -5,7 +5,7 @@ import org.slf4j.LoggerFactory;
 
 import java.awt.*;
 
-public abstract class SingleRender extends AbstractRenderer {
+public abstract class SingleRenderer extends AbstractRenderer {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(WindowFrame.class);
 

@@ -1,6 +1,6 @@
 package nl.wijdemans.turtle;
 
-import nl.wijdemans.util.SingleRender;
+import nl.wijdemans.util.SingleRenderer;
 import nl.wijdemans.util.WindowFrame;
 
 import java.awt.*;
@@ -22,7 +22,7 @@ public class Flower {
                 .build();
     }
 
-    class FlowerPainter extends SingleRender {
+    class FlowerPainter extends SingleRenderer {
 
         private static final int AMOUNT_OF_FLOWERS = 190;
         private static final int HORIZON_HEIGHT = 150;

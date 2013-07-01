@@ -1,8 +1,7 @@
 package nl.wijdemans.turtle;
 
-import nl.wijdemans.util.Callback;
 import nl.wijdemans.util.ContinuousRenderer;
-import nl.wijdemans.util.SingleRender;
+import nl.wijdemans.util.SingleRenderer;
 import nl.wijdemans.util.WindowFrame;
 
 import java.awt.*;
@@ -52,7 +51,7 @@ public class Tree {
         }
     }
 
-    private class TreeRenderer extends SingleRender {
+    private class TreeRenderer extends SingleRenderer {
 
         private Graphics2D g2;
 
