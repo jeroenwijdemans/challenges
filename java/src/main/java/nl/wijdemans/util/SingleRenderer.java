@@ -4,10 +4,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
 
-public abstract class SingleRenderer extends AbstractRenderer {
+public abstract class SingleRenderer extends Graphics2DRenderer {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(WindowFrame.class);
+
+
 
     public abstract void render(Graphics2D g2);
 
@@ -15,4 +18,5 @@ public abstract class SingleRenderer extends AbstractRenderer {
     protected int sleepUntilNext() {
         return 60*1000;
     }
+
 }
