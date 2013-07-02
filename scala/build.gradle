@@ -1,1 +1,1 @@
-apply 'scala'
+apply plugin: 'scala'
