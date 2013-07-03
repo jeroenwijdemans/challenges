@@ -39,8 +39,6 @@ object Euler07 {
       if (counter % 1000 == 0) println("cpc: " +currentPrimeCounter + " - c: " + currentPrime)
     } while (currentPrimeCounter < 10001)
 
-
-
     println("Last Prime  " + currentPrime)
   }
 
