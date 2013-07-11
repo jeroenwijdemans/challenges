@@ -1,1 +1,39 @@
 apply plugin: 'scala'
+apply plugin: 'idea'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile 'org.scala-lang:scala-library:2.9.2'
+
+    testCompile 'org.scalatest:scalatest_2.9.1:1.9.1'
+    testCompile 'junit:junit:4.11'
+
+}
+
+//tasks.withType(ScalaCompile) {
+//// use zync-based incremental compiler
+//    scalaCompileOptions.useAnt = false
+//}
+//
+//task scalaTest(dependsOn: testClasses) << {
+//    ant.taskdef(name: 'scalatest',
+//            classname: 'org.scalatest.tools.ScalaTestAntTask',
+//            classpath: sourceSets.test.runtimeClasspath.asPath
+//    )
+//    ant.scalatest(runpath: sourceSets.test.compileClasspath,
+//            fork: 'false',
+//            haltonfailure: 'true',
+//            suite: 'TranslatorTest')
+//            { reporter(type: 'stdout') }
+//}
+
+idea {
+    project {
+        //if you want to set specific jdk and language level
+        jdkName = '1.7'
+        languageLevel = '1.7'
+    }
+}
